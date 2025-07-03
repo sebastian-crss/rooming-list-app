@@ -15,16 +15,17 @@ services:
 
   backend:
     build: ./backend
-    volumes:
-      - ./backend/src:/app/src
-      - ./backend/prisma:/app/prisma
-      - ./backend/.env:/app/.env
     ports:
       - "3001:3001"
     depends_on:
       - db
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@db:5432/rooming_db?schema=public
+    volumes:
+      - ./backend/prisma:/app/prisma
+      - ./backend/src:/app/src
+      - ./backend/.env:/app/.env
+      - ./backend/generated:/app/generated
 
 volumes:
   postgres_data:

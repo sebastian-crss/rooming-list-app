@@ -4,6 +4,9 @@
   "main": "dist/server.js",
   "scripts": {
     "dev": "nodemon --watch src --ext ts --exec tsx src/server.ts",
+    "migrate": "npx prisma migrate dev --name init",
+    "seed": "npx tsx prisma/seed.ts",
+    "generate": "npx prisma generate",
     "build": "tsc",
     "start": "node dist/server.js"
   },
@@ -22,6 +25,7 @@
     "prisma": "^6.11.0"
   },
   "devDependencies": {
+    "@types/express": "^5.0.3",
     "@types/node": "^24.0.10",
     "esbuild-wasm": "^0.25.5",
     "nodemon": "^3.1.10",
