@@ -1,0 +1,24 @@
+{
+  "name": "rooming-list-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"npm run dev --prefix frontend\" \"npm run dev --prefix backend\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sebastian-crss/rooming-list-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sebastian-crss/rooming-list-app/issues"
+  },
+  "homepage": "https://github.com/sebastian-crss/rooming-list-app#readme",
+  "devDependencies": {
+    "concurrently": "^9.2.0"
+  }
+}

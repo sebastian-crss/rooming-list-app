@@ -1,0 +1,63 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model RoomingList {
+  roomingListId   Int       @id @default(autoincrement())
+  eventId         Int
+  hotelId         Int
+  rfpName         String
+  cutOffDate      DateTime
+  status          RoomingListStatus
+  agreement_type  AgreementType
+  bookings        RoomingListBooking[]
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Booking {
+  bookingId        Int       @id @default(autoincrement())
+  hotelId          Int
+  eventId          Int
+  guestName        String
+  guestPhoneNumber String
+  checkInDate      DateTime
+  checkOutDate     DateTime
+  roomingLists     RoomingListBooking[]
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model RoomingListBooking {
+  roomingListId Int
+  bookingId     Int
+
+  roomingList   RoomingList @relation(fields: [roomingListId], references: [roomingListId])
+  booking       Booking     @relation(fields: [bookingId], references: [bookingId])
+
+  @@id([roomingListId, bookingId])
+}
+
+enum RoomingListStatus {
+  Active    // Received
+  Closed    // Completed
+  Cancelled // Archived
+}
+
+enum AgreementType {
+  leisure
+  staff
+  artist
+}
