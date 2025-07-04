@@ -1,0 +1,24 @@
+# 1. Usa una imagen con Node.js
+FROM node:18-alpine
+
+# 2. Establece el directorio de trabajo
+WORKDIR /app
+
+# 3. Copia los archivos necesarios
+COPY package*.json ./
+COPY tsconfig.json ./
+COPY public ./public
+COPY next.config.ts ./
+COPY app ./app
+COPY components ./components
+COPY lib ./lib
+
+# 4. Instala las dependencias
+RUN npm install
+
+# 5. Hace el build de producción de Next.js
+RUN npm run build
+
+# 6. Expone el puerto y lanza la app
+EXPOSE 3000
+CMD ["npm", "run", "dev"]

@@ -27,5 +27,20 @@ services:
       - ./backend/.env:/app/.env
       - ./backend/generated:/app/generated
 
+  frontend:
+    build:
+      context: ./frontend
+    command: npm run dev
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:3001
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+  
+
 volumes:
   postgres_data:
