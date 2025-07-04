@@ -51,9 +51,9 @@ model RoomingListBooking {
 }
 
 enum RoomingListStatus {
-  Active    // Received
-  Closed    // Completed
-  Cancelled // Archived
+  Active
+  Closed
+  Cancelled
 }
 
 enum AgreementType {

@@ -1,0 +1,42 @@
+[
+  {
+    "hotelId": 101,
+    "eventId": 1,
+    "guestName": "Alice Johnson",
+    "guestPhoneNumber": "+50660001111",
+    "checkInDate": "2025-07-31T15:00:00.000Z",
+    "checkOutDate": "2025-08-02T11:00:00.000Z"
+  },
+  {
+    "hotelId": 101,
+    "eventId": 1,
+    "guestName": "Bob Smith",
+    "guestPhoneNumber": "+50660002222",
+    "checkInDate": "2025-07-31T15:00:00.000Z",
+    "checkOutDate": "2025-08-02T11:00:00.000Z"
+  },
+  {
+    "hotelId": 101,
+    "eventId": 1,
+    "guestName": "Carla Ramirez",
+    "guestPhoneNumber": "+50660003333",
+    "checkInDate": "2025-08-02T15:00:00.000Z",
+    "checkOutDate": "2025-08-04T11:00:00.000Z"
+  },
+  {
+    "hotelId": 202,
+    "eventId": 2,
+    "guestName": "Daniel Wu",
+    "guestPhoneNumber": "+50660004444",
+    "checkInDate": "2025-09-09T15:00:00.000Z",
+    "checkOutDate": "2025-09-12T11:00:00.000Z"
+  },
+  {
+    "hotelId": 303,
+    "eventId": 3,
+    "guestName": "Elena Martinez",
+    "guestPhoneNumber": "+50660005555",
+    "checkInDate": "2025-07-27T15:00:00.000Z",
+    "checkOutDate": "2025-07-29T11:00:00.000Z"
+  }
+]

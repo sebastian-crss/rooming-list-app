@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { RequestHandler } from 'express';
 import express from 'express'
 import {
   getAllRoomingLists,
@@ -14,7 +14,7 @@ const router = express.Router()
 router.get('', getAllRoomingLists)
 
 // GET /api/rooming-lists/:id
-router.get('/:id', getRoomingListById)
+router.get('/:id', getRoomingListById as RequestHandler)
 
 // POST /api/rooming-lists
 router.post('/', createRoomingList)
