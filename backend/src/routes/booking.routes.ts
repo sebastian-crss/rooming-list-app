@@ -6,13 +6,14 @@ import {
   updateBooking,
   deleteBooking,
 } from '../controllers/booking.controller'
+import { authenticateApiKey } from '../middlewares/auth'
 
 const router = express.Router();
 
-router.get('/', getAllBookings);
-router.get('/:id', getBookingById as RequestHandler);
-router.post('/', createBooking);
-router.put('/:id', updateBooking);
-router.delete('/:id', deleteBooking);
+router.get('/', authenticateApiKey, getAllBookings);
+router.get('/:id', authenticateApiKey, getBookingById as RequestHandler);
+router.post('/', authenticateApiKey, createBooking);
+router.put('/:id', authenticateApiKey, updateBooking);
+router.delete('/:id', authenticateApiKey, deleteBooking);
 
 export default router;

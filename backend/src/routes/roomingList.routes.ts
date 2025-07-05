@@ -7,19 +7,14 @@ import {
   updateRoomingList,
   deleteRoomingList,
 } from '../controllers/roomingList.controller';
+import { authenticateApiKey } from '../middlewares/auth'
 
 const router = express.Router()
 
-// GET /api/rooming-lists
-router.get('', getAllRoomingLists)
-
-// GET /api/rooming-lists/:id
-router.get('/:id', getRoomingListById as RequestHandler)
-
-// POST /api/rooming-lists
-router.post('/', createRoomingList)
-
-router.put('/:id', updateRoomingList);
-router.delete('/:id', deleteRoomingList);
+router.get('', authenticateApiKey, getAllRoomingLists)
+router.get('/:id', authenticateApiKey, getRoomingListById as RequestHandler)
+router.post('/', authenticateApiKey, createRoomingList)
+router.put('/:id', authenticateApiKey, updateRoomingList);
+router.delete('/:id', authenticateApiKey, deleteRoomingList);
 
 export default router
