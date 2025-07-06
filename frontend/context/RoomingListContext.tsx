@@ -10,6 +10,11 @@ interface RoomingListContextType {
   statusFilter: string[]
   setStatusFilter: (value: string[]) => void
   filteredRoomingLists: RoomingList[]
+  sortOrder: 'asc' | 'desc'
+  setSortOrder: (order: 'asc' | 'desc') => void
+  currentPage: number
+  setCurrentPage: (page: number) => void
+  itemsPerPage: number
 }
 
 const RoomingListContext = createContext<RoomingListContextType | undefined>(undefined)
@@ -19,6 +24,9 @@ export const RoomingListProvider: React.FC<{ children: React.ReactNode }> = ({ c
   const [searchTerm, setSearchTerm] = useState('')
   const [statusFilter, setStatusFilter] = useState<string[]>([])
   const [filteredRoomingLists, setFiltered] = useState<RoomingList[]>([])
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
+  const [currentPage, setCurrentPage] = useState(1)
+  const itemsPerPage = 6
 
   useEffect(() => {
     let filtered = [...roomingLists]
@@ -36,8 +44,15 @@ export const RoomingListProvider: React.FC<{ children: React.ReactNode }> = ({ c
         filtered = filtered.filter(r => statusFilter.includes(r.status))
     }
 
+    filtered.sort((a, b) => {
+        const dateA = new Date(a.cutOffDate).getTime()
+        const dateB = new Date(b.cutOffDate).getTime()
+        return sortOrder === 'asc' ? dateA - dateB : dateB - dateA
+    })
+
     setFiltered(filtered)
-  }, [roomingLists, searchTerm, statusFilter])
+
+  }, [roomingLists, searchTerm, statusFilter, sortOrder])
 
   return (
     <RoomingListContext.Provider
@@ -49,6 +64,11 @@ export const RoomingListProvider: React.FC<{ children: React.ReactNode }> = ({ c
         statusFilter,
         setStatusFilter,
         filteredRoomingLists,
+        sortOrder,
+        setSortOrder,
+        currentPage,
+        setCurrentPage,
+        itemsPerPage
       }}
     >
       {children}

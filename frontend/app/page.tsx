@@ -6,6 +6,7 @@ import RoomingListCards from '../components/RoomingListCards'
 import SearchInput from '@/components/SearchInput'
 import FiltersButton from '@/components/FiltersButton'
 import { useRoomingLists } from '../context/RoomingListContext'
+import SortButton from '@/components/SortButton'
 
 export default function Home() {
   const [loading, setLoading] = useState(true)
@@ -46,6 +47,7 @@ export default function Home() {
           <div className="flex items-center items-start gap-4 mt-6 relative">
             <SearchInput />
             <FiltersButton />
+            <SortButton />
           </div>
           <RoomingListCards
             onViewBookings={handleViewBookings}

@@ -1,9 +1,20 @@
 'use client'
+
 import { Search } from 'lucide-react'
 import { useRoomingLists } from '../context/RoomingListContext'
+import { useEffect, useState } from 'react'
 
 const SearchInput = () => {
-  const { searchTerm, setSearchTerm } = useRoomingLists()
+  const { setSearchTerm } = useRoomingLists()
+  const [localInput, setLocalInput] = useState('')
+
+  useEffect(() => {
+    const delay = setTimeout(() => {
+      setSearchTerm(localInput)
+    }, 300)
+
+    return () => clearTimeout(delay)
+  }, [localInput, setSearchTerm])
 
   return (
     <div className="flex items-center bg-white border border-gray-200 rounded-xl h-10 px-3 shadow-sm w-full max-w-xs">
@@ -12,8 +23,8 @@ const SearchInput = () => {
         type="text"
         placeholder="Search by event, RFP, or agreement type"
         className="flex-1 bg-transparent outline-none text-sm text-gray-800 placeholder-gray-400"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
+        value={localInput}
+        onChange={(e) => setLocalInput(e.target.value)}
       />
     </div>
   )
