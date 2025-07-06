@@ -1,14 +1,15 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { getRoomingLists, RoomingList } from '../lib/api'
+import { getRoomingListById, getRoomingLists } from '../lib/api'
 import RoomingListCards from '../components/RoomingListCards'
 import SearchInput from '@/components/SearchInput'
 import FiltersButton from '@/components/FiltersButton'
+import { useRoomingLists } from '../context/RoomingListContext'
 
 export default function Home() {
-  const [roomingLists, setRoomingLists] = useState<RoomingList[]>([])
   const [loading, setLoading] = useState(true)
+  const { setRoomingLists } = useRoomingLists()
 
   useEffect(() => {
     async function fetchData() {
@@ -25,6 +26,16 @@ export default function Home() {
     fetchData()
   }, [])
 
+  const handleViewBookings = async (roomingListId: number) => {
+    try {
+      console.log(roomingListId, 'Fetching bookings for this rooming list...')
+      const res = await getRoomingListById(roomingListId)
+      console.log('Bookings for Rooming List:', roomingListId, res.bookings)
+    } catch (error) {
+      console.error('Failed to fetch bookings:', error)
+    }
+  }
+
   return (
     <main className="max-w-7xl mx-auto px-4 py-6">
       <h1 className="text-3xl font-bold mb-6">Rooming List Management: Events</h1>
@@ -37,8 +48,7 @@ export default function Home() {
             <FiltersButton />
           </div>
           <RoomingListCards
-            data={roomingLists}
-            onViewBookings={(id) => console.log('View bookings for', id)}
+            onViewBookings={handleViewBookings}
           />
          </div>
       )}

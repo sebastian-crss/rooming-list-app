@@ -5,8 +5,9 @@ const prisma = new PrismaClient()
 
 export const getAllRoomingLists = async (_req: Request, res: Response) => {
   try {
-    const roomingLists = await prisma.roomingList.findMany()
-    console.log(roomingLists)
+    const roomingLists = await prisma.roomingList.findMany({
+      include: { bookings: true },
+    })
     res.json(roomingLists)
   } catch (error) {
     console.error(error)
@@ -20,7 +21,13 @@ export const getRoomingListById = async (req: Request, res: Response) => {
   try {
     const roomingList = await prisma.roomingList.findUnique({
       where: { roomingListId: id },
-      include: { bookings: true },
+      include: {
+        bookings: {
+          include: {
+            booking: true,
+          }
+        }
+      }
     })
 
     if (!roomingList) {

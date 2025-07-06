@@ -1,14 +1,18 @@
+'use client'
+
 import React from 'react'
-import { RoomingList } from '../lib/api'
+import { RoomingList } from '@/lib/types'
 import { Calendar } from 'lucide-react'
+import { useRoomingLists } from '../context/RoomingListContext'
 
 interface Props {
-  data: RoomingList[]
   onViewBookings?: (roomingListId: number) => void
 }
 
-const RoomingListCards: React.FC<Props> = ({ data, onViewBookings }) => {
-  const grouped = data.reduce((acc: any, item) => {
+const RoomingListCards: React.FC<Props> = ({ onViewBookings }) => {
+  const { filteredRoomingLists } = useRoomingLists()
+
+  const grouped = filteredRoomingLists.reduce((acc: Record<number, RoomingList[]>, item) => {
     const key = item.eventId
     acc[key] = acc[key] || []
     acc[key].push(item)
@@ -26,8 +30,9 @@ const RoomingListCards: React.FC<Props> = ({ data, onViewBookings }) => {
             </span>
             <div className="flex-grow border-t border-gray-300" />
           </div>
+
           <div className="flex gap-4 overflow-x-auto pb-2">
-            {(lists as RoomingList[]).map((r) => (
+            {lists.map((r) => (
               <div
                 key={r.roomingListId}
                 className="min-w-[280px] rounded border shadow p-4 relative bg-white"
@@ -45,32 +50,33 @@ const RoomingListCards: React.FC<Props> = ({ data, onViewBookings }) => {
                 </div>
 
                 <div className="mb-2">
-                  <p className="text-sm font-semibold pr-15 font-semibold">{r.rfpName}</p>
+                  <p className="text-sm font-semibold pr-15">{r.rfpName}</p>
                   <p className="text-sm">Agreement: <span className='font-bold'>{r.agreement_type}</span></p>
+                  <p className="text-sm">Status: <span className='font-bold'>{r.status}</span></p>
                 </div>
 
                 <div className="text-sm text-gray-600 mb-2 flex gap-2 font-semibold">
-                   <Calendar className="w-4 h-4 text-gray-400" />
-                   <span>
+                  <Calendar className="w-4 h-4 text-gray-400" />
+                  <span>
                     {new Date(r.createdAt).toLocaleDateString('en-US', {
                       month: 'short',
                       day: 'numeric',
                       year: 'numeric',
-                    })} -  {' '}
+                    })} - {' '}
                     {new Date(r.updatedAt).toLocaleDateString('en-US', {
                       month: 'short',
                       day: 'numeric',
                       year: 'numeric',
                     })}
                   </span>
-                  
                 </div>
 
                 <div className="mt-4 flex gap-2">
                   <button
+                    onClick={() => onViewBookings?.(r.roomingListId)}
                     className="flex-1 flex items-center justify-center gap-2 bg-[#5F22F5] hover:bg-[#4e1cd1] text-white font-semibold py-2 rounded-md shadow-md transition"
                   >
-                    View Bookings (34)
+                    View Bookings ({r.bookings.length})
                   </button>
 
                   <button
@@ -93,7 +99,6 @@ const RoomingListCards: React.FC<Props> = ({ data, onViewBookings }) => {
                     </svg>
                   </button>
                 </div>
-
               </div>
             ))}
           </div>
