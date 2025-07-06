@@ -2,7 +2,9 @@
 
 import { useEffect, useState } from 'react'
 import { getRoomingLists, RoomingList } from '../lib/api'
-import RoomingListTable from '../components/RoomingListTable'
+import RoomingListCards from '../components/RoomingListCards'
+import SearchInput from '@/components/SearchInput'
+import FiltersButton from '@/components/FiltersButton'
 
 export default function Home() {
   const [roomingLists, setRoomingLists] = useState<RoomingList[]>([])
@@ -25,13 +27,20 @@ export default function Home() {
 
   return (
     <main className="max-w-7xl mx-auto px-4 py-6">
-      <h1 className="text-3xl font-bold mb-6">Rooming Lists</h1>
+      <h1 className="text-3xl font-bold mb-6">Rooming List Management: Events</h1>
       {loading ? (
         <p className="text-gray-600">Loading...</p>
       ) : (
-        <RoomingListTable data={roomingLists} onEdit={(rooming) => console.log(rooming)} onDeleteComplete={function (): void {
-            throw new Error('Function not implemented.')
-          } }     />
+        <div className="p-4">
+          <div className="flex items-center items-start gap-4 mt-6 relative">
+            <SearchInput />
+            <FiltersButton />
+          </div>
+          <RoomingListCards
+            data={roomingLists}
+            onViewBookings={(id) => console.log('View bookings for', id)}
+          />
+         </div>
       )}
     </main>
   )

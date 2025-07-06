@@ -3,7 +3,7 @@ export interface RoomingList {
   eventId: number
   hotelId: number
   rfpName: string
-  cutoffDate: string
+  cutOffDate: string
   status: 'Active' | 'Inactive'
   agreement_type: 'staff' | 'guest'
   createdAt: string

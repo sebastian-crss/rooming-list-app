@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
-import roomingListsData from '../../seed/roomingLists.json';
-import bookingsData from '../../seed/bookings.json';
+import roomingListsData from '../../prisma/roomingLists.json';
+import bookingsData from '../../prisma/bookings.json';
 
 const prisma = new PrismaClient();
 
@@ -38,7 +38,7 @@ export const resetAndSeed = async (_req: Request, res: Response) => {
     });
 
     res.status(200).json({
-      message: 'Seeding completo con relaciones',
+      message: 'Seeding completed successfully',
       roomingListsCount: createdRoomingLists.count,
       bookingsCount: createdBookings.count,
       relationshipsCreated: assignments.length,

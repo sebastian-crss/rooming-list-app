@@ -1,0 +1,58 @@
+[
+  {
+    "eventId": 4,
+    "hotelId": 404,
+    "rfpName": "Volunteer Housing Tomorrowland",
+    "cutOffDate": "2025-07-15T00:00:00.000Z",
+    "status": "Active",
+    "agreement_type": "staff"
+  },
+  {
+    "eventId": 4,
+    "hotelId": 405,
+    "rfpName": "Artist Lounge Tomorrowland",
+    "cutOffDate": "2025-07-20T00:00:00.000Z",
+    "status": "Active",
+    "agreement_type": "artist"
+  },
+  {
+    "eventId": 4,
+    "hotelId": 405,
+    "rfpName": "Artist Lounge Tomorrowland",
+    "cutOffDate": "2025-07-20T00:00:00.000Z",
+    "status": "Active",
+    "agreement_type": "artist"
+  },
+  {
+    "eventId": 4,
+    "hotelId": 405,
+    "rfpName": "Artist Lounge Tomorrowland",
+    "cutOffDate": "2025-07-20T00:00:00.000Z",
+    "status": "Active",
+    "agreement_type": "artist"
+  },
+  {
+    "eventId": 4,
+    "hotelId": 405,
+    "rfpName": "Artist Lounge Tomorrowland",
+    "cutOffDate": "2025-07-20T00:00:00.000Z",
+    "status": "Active",
+    "agreement_type": "artist"
+  },
+  {
+    "eventId": 5,
+    "hotelId": 505,
+    "rfpName": "Press & Media Camp Coachella",
+    "cutOffDate": "2025-08-15T00:00:00.000Z",
+    "status": "Closed",
+    "agreement_type": "staff"
+  },
+  {
+    "eventId": 5,
+    "hotelId": 506,
+    "rfpName": "Backstage Crew Coachella",
+    "cutOffDate": "2025-08-10T00:00:00.000Z",
+    "status": "Active",
+    "agreement_type": "staff"
+  }
+]

@@ -2,8 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { RoomingList, getRoomingLists } from '../lib/api'
-import RoomingListForm from '../components/RoomingListForm'
-import RoomingListTable from '../components/RoomingListTable'
+import RoomingListTable from '../components/RoomingListCards'
 
 export default function Home() {
   const [data, setData] = useState<RoomingList[]>([])
@@ -31,16 +30,8 @@ export default function Home() {
     <main className="max-w-4xl mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Rooming List Manager</h1>
 
-      {/* <RoomingListForm
-        initialData={editing}
-        onSubmit={handleFormSubmit}
-        onCancel={() => setEditing(null)}
-      /> */}
-
       <RoomingListTable
         data={data}
-        onEdit={(item) => setEditing(item)}
-        onDeleteComplete={fetchRoomingLists}
       />
     </main>
   )

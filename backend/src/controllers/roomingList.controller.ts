@@ -5,7 +5,6 @@ const prisma = new PrismaClient()
 
 export const getAllRoomingLists = async (_req: Request, res: Response) => {
   try {
-    console.log('Fetching all rooming lists...')
     const roomingLists = await prisma.roomingList.findMany()
     console.log(roomingLists)
     res.json(roomingLists)

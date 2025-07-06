@@ -1,20 +1,12 @@
 import { PrismaClient } from '../generated/prisma';
+import { resetAndSeed } from '../src/controllers/seed.controller';
 
 const prisma = new PrismaClient();
 
 async function main() {
-  const roomingList = await prisma.roomingList.create({
-    data: {
-      eventId: 1,
-      hotelId: 1,
-      rfpName: "Test RFP",
-      cutOffDate: new Date(),
-      status: "Active",
-      agreement_type: "staff",
-    },
-  });
+  await resetAndSeed({} as any, {} as any);
 
-  console.log('Rooming List created:', roomingList);
+  console.log('Seeding completed successfully');
 }
 
 main()
