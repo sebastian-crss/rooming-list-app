@@ -147,9 +147,3 @@ This stops all containers and removes volumes (e.g., PostgreSQL data).
 
 ### 🧾 License
 MIT – © 2025 Sebastian Quesada
-
-```
-readme_path = Path("/mnt/data/README.md")
-readme_path.write_text(readme_content.strip())
-readme_path.name
-```
